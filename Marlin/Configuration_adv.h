@@ -2959,7 +2959,7 @@
  */
 #if HAS_TRINAMIC_CONFIG || HAS_TMC26X
 
-  #define HOLD_MULTIPLIER    0.05  // Scales down the holding current from run current
+  #define HOLD_MULTIPLIER    0.1  // Scales down the holding current from run current
 
   /**
    * Interpolate microsteps to 256
@@ -2974,7 +2974,7 @@
     #define X_RSENSE          0.11     // Multiplied x1000 for TMC26X
     #define X_CHAIN_POS      -1        // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
     //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
-    #define X_HOLD_MULTIPLIER 0.05    // Enable to override 'HOLD_MULTIPLIER' for the X axis
+    //#define X_HOLD_MULTIPLIER 0.05    // Enable to override 'HOLD_MULTIPLIER' for the X axis
   #endif
 
   #if AXIS_IS_TMC_CONFIG(X2)
@@ -3008,13 +3008,13 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z)
-    #define Z_CURRENT       400
+    #define Z_CURRENT       600
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
     #define Z_CHAIN_POS      -1
     //#define Z_INTERPOLATE  true
-    #define Z_HOLD_MULTIPLIER 0.02
+    //#define Z_HOLD_MULTIPLIER 0.02
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z2)
