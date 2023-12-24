@@ -925,8 +925,8 @@
 
 //#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (linear=mm, rotational=°) Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM      { 5, 5, 2 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_MM      { 2, 2, 1 }       // (linear=mm, rotational=°) Backoff from endstops after first bump
+#define HOMING_BUMP_DIVISOR { 2, 2, 2 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 //#define XY_COUNTERPART_BACKOFF_MM 0         // (mm) Backoff X after homing Y, and vice-versa
@@ -1240,7 +1240,7 @@
  * Enable DISABLE_IDLE_* to shut down axis steppers after an idle period.
  * The default timeout duration can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_TIMEOUT_SEC 120
+#define DEFAULT_STEPPER_TIMEOUT_SEC 30
 #define DISABLE_IDLE_X
 #define DISABLE_IDLE_Y
 #define DISABLE_IDLE_Z    // Disable if the nozzle could fall onto your printed part!
@@ -2959,7 +2959,7 @@
  */
 #if HAS_TRINAMIC_CONFIG || HAS_TMC26X
 
-  #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
+  #define HOLD_MULTIPLIER    0.05  // Scales down the holding current from run current
 
   /**
    * Interpolate microsteps to 256
@@ -2968,13 +2968,13 @@
   #define INTERPOLATE      true
 
   #if AXIS_IS_TMC_CONFIG(X)
-    #define X_CURRENT       800        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       600        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16        // 0..256
     #define X_RSENSE          0.11     // Multiplied x1000 for TMC26X
     #define X_CHAIN_POS      -1        // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
     //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
-    //#define X_HOLD_MULTIPLIER 0.5    // Enable to override 'HOLD_MULTIPLIER' for the X axis
+    #define X_HOLD_MULTIPLIER 0.05    // Enable to override 'HOLD_MULTIPLIER' for the X axis
   #endif
 
   #if AXIS_IS_TMC_CONFIG(X2)
@@ -2988,7 +2988,7 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Y)
-    #define Y_CURRENT       800
+    #define Y_CURRENT       500
     #define Y_CURRENT_HOME  Y_CURRENT
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
@@ -3008,13 +3008,13 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z)
-    #define Z_CURRENT       800
+    #define Z_CURRENT       400
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
     #define Z_CHAIN_POS      -1
     //#define Z_INTERPOLATE  true
-    //#define Z_HOLD_MULTIPLIER 0.5
+    #define Z_HOLD_MULTIPLIER 0.02
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z2)
@@ -3108,7 +3108,7 @@
   #endif
 
   #if AXIS_IS_TMC_CONFIG(E0)
-    #define E0_CURRENT      800
+    #define E0_CURRENT      500
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1

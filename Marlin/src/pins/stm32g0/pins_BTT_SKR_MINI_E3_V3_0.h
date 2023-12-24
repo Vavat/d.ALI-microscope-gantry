@@ -54,6 +54,7 @@
 //
 // Limit Switches
 //
+// N.B. The limit switches are not affected by changes to the motor control pinout.
 #define X_STOP_PIN                          PC0   // X-STOP
 #define Y_STOP_PIN                          PC1   // Y-STOP
 #define Z_STOP_PIN                          PC2   // Z-STOP
@@ -84,17 +85,20 @@
 //
 // Steppers
 //
-#define X_ENABLE_PIN                        PB14
-#define X_STEP_PIN                          PB13
-#define X_DIR_PIN                           PB12
+// N.B. The X and Z axes are swapped from normal orientation. This is done 
+// because microscope has dual X axis and it is more convenient to drive X-axis
+// from Z-axis connectors. Original motor pinout is in comments.
+#define X_ENABLE_PIN                        PB1 //PB14
+#define X_STEP_PIN                          PB0 //PB13
+#define X_DIR_PIN                           PC5 //PB12
 
 #define Y_ENABLE_PIN                        PB11
 #define Y_STEP_PIN                          PB10
 #define Y_DIR_PIN                           PB2
 
-#define Z_ENABLE_PIN                        PB1
-#define Z_STEP_PIN                          PB0
-#define Z_DIR_PIN                           PC5
+#define Z_ENABLE_PIN                        PB14 //PB1
+#define Z_STEP_PIN                          PB13 //PB0
+#define Z_DIR_PIN                           PB12 //PC5
 
 #define E0_ENABLE_PIN                       PD1
 #define E0_STEP_PIN                         PB3
@@ -111,14 +115,15 @@
   #define E0_HARDWARE_SERIAL MSerial4
 
   // Default TMC slave addresses
+  // Slave addresses change as well since we swapped X and Y drivers.
   #ifndef X_SLAVE_ADDRESS
-    #define X_SLAVE_ADDRESS  0
+    #define X_SLAVE_ADDRESS  1 //0
   #endif
   #ifndef Y_SLAVE_ADDRESS
     #define Y_SLAVE_ADDRESS  2
   #endif
   #ifndef Z_SLAVE_ADDRESS
-    #define Z_SLAVE_ADDRESS  1
+    #define Z_SLAVE_ADDRESS  0 //1
   #endif
   #ifndef E0_SLAVE_ADDRESS
     #define E0_SLAVE_ADDRESS 3
