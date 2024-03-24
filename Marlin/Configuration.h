@@ -1790,9 +1790,9 @@
 // @section geometry
 
 // The size of the printable area
-#define X_SCAN_SIZE   155
-#define Y_SCAN_SIZE   90
-#define Z_FOCUS_RANGE 16
+#define X_SCAN_SIZE   145
+#define Y_SCAN_SIZE   85
+#define Z_FOCUS_RANGE 15
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
